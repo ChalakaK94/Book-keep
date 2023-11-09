@@ -69,3 +69,27 @@ ul .books-list{
 .justify-content-between{
   justify-content: space-between;
 }
+
+.book-read-list{
+  margin: 0;
+  list-style: none;
+  padding: 10px;
+  
+}
+
+.book-read-list img{
+  width: 50px;
+}
+
+.book-read-list h3{
+  margin: 10px;
+  font-size: 10px;
+}
+.book-read-list li {
+ gap: 10px;
+ margin-bottom: 10px;
+}
+
+.justify-content-around{
+  justify-content: space-around;
+}

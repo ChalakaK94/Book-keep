@@ -1,11 +1,11 @@
 import BookReadSummary from "./BookReadSummary";
-import BooksRead from "./BooksRead";
+import BooksReadList from "./BooksReadList";
 
 export default function StudiedList({booksRead}){
     return (
         <div className="box">
             <BookReadSummary booksRead={booksRead} />
-            <BooksRead booksRead={booksRead} />
+            <BooksReadList booksRead={booksRead} />
         </div>
     )
 }
