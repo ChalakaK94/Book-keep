@@ -1,8 +1,6 @@
 import { useState } from "react";
-import BookReadSummary from "./BookReadSummary";
-import BooksReadList from "./BooksReadList";
 
-export default function StudiedList({booksRead}){
+export default function StudiedList({children}){
     const [isOpen, setIsOpen] = useState(true)
     return (
         <div className="box">
@@ -10,10 +8,7 @@ export default function StudiedList({booksRead}){
                 <button className="btn-toggle" onClick={()=> setIsOpen((open)=> !open)}>
                     {isOpen ? '-' : '+'}</button>
             </div>
-            {isOpen &&  <>
-                <BookReadSummary booksRead={booksRead} />
-            <BooksReadList booksRead={booksRead} />
-            </> }
+            {isOpen &&  children  }
             
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BooksList from "./BooksList";
 
-export default function ListBox({booksData}){
+export default function ListBox({children}){
     
     const [isOpen, setIsOpen] = useState(true)
     return (
@@ -11,7 +11,7 @@ export default function ListBox({booksData}){
                     {isOpen? '-' : '+'}</button>
             </div>
 
-            {isOpen && <BooksList booksData={booksData} /> }    
+            {isOpen && children }    
             </div>
     )
 }

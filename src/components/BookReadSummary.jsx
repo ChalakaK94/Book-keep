@@ -1,4 +1,4 @@
-export default function BookReadSummary({booksRead}){
+export default function BookReadSummary(){
     return(
 
         <div className="books-summmary">

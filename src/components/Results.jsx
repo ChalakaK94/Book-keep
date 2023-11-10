@@ -1,5 +1,5 @@
-export default function Results(){
+export default function Results({books}){
     return (
-        <div> Found X Results</div>
+        <div> Found {books.length} Results</div>
     )
 }

@@ -2,6 +2,13 @@ import { useState } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
+import Results from './components/Results'
+import ListBox from './components/ListBox';
+import BooksList from './components/BooksList';
+import StudiedList from './components/StudiedList';
+
+import BookReadSummary from "./components/BookReadSummary";
+import BooksReadList from "./components/BooksReadList";
 const Books = [
   {
     isbn: '9788129112859',
@@ -81,8 +88,18 @@ function App() {
 
   return (
     <>
-    <Navbar/>
-    <Main booksData={booksData} booksRead={booksReadData}/>
+    <Navbar>
+    <Results books={booksData}/>
+    </Navbar>
+    <Main>
+      <ListBox >
+        <BooksList booksData={booksData}/>
+      </ListBox>
+      <StudiedList>
+            <BookReadSummary />
+            <BooksReadList booksRead={booksReadData} />
+      </StudiedList>
+    </Main>
     </>
   );
 }

@@ -1,13 +1,13 @@
 import Logo from "./Logo";
-import Results from "./Results";
 import Search from "./Search";
 
-export default function Navbar(){
+export default function Navbar({childern}){
     return (
     <nav className='navbar'>
        <Logo/>
        <Search/>
-       <Results/>
+       {childern}
+       
     </nav>
     )
 }
