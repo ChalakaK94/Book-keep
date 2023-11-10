@@ -23,7 +23,7 @@ html{
 
 .box{
   box-shadow: 1px 1px 3px 4px #eee;
-  /* padding: 10px; */
+  padding: 10px;
   margin-top: 20px;
 
 }
@@ -92,4 +92,9 @@ ul .books-list{
 
 .justify-content-around{
   justify-content: space-around;
+}
+
+.btn-toggle{
+  background-color: transparent;
+  border: none;
 }
