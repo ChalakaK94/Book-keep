@@ -1,5 +1,4 @@
 
-import StudiedList from "./StudiedList";
 
 export default function Main({ children}){
     return(

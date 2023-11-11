@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Results from './components/Results'
 import ListBox from './components/ListBox';
 import BooksList from './components/BooksList';
-import StudiedList from './components/StudiedList';
 
 import BookReadSummary from "./components/BookReadSummary";
 import BooksReadList from "./components/BooksReadList";
@@ -95,10 +94,10 @@ function App() {
       <ListBox >
         <BooksList booksData={booksData}/>
       </ListBox>
-      <StudiedList>
+      <ListBox>
             <BookReadSummary />
             <BooksReadList booksRead={booksReadData} />
-      </StudiedList>
+      </ListBox>
     </Main>
     </>
   );
