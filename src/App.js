@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
@@ -8,6 +8,7 @@ import BooksList from './components/BooksList';
 
 import BookReadSummary from "./components/BookReadSummary";
 import BooksReadList from "./components/BooksReadList";
+import FormatBookResponse from './service/FormatBookResponse';
 const Books = [
   {
     isbn: '9788129112859',
@@ -81,10 +82,26 @@ const BookRead = [
       'http://books.google.com/books/content?id=e_l9zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
   }
 ];
+
+const KEY ='AIzaSyDSwK1KQRyal2ddUwrnOyYoDJP467Wc48c';
+
+
+
 function App() {
   const [booksData,setBooksData] = useState(Books)
   const [booksReadData,setBooksReadData] = useState(BookRead)
 
+  async function fetchPosts(){
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=monk+ferarri&key=${KEY}`);
+    const data = await response.json();
+    setBooksData(FormatBookResponse(data))
+  }
+
+  useEffect(()=>{
+    fetchPosts()
+  },[])
+
+ 
   return (
     <>
     <Navbar>
