@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { prepareBookObject } from "../service/FormatBookResponse";
 import Loader from "./Loader";
+import StarRating from "./starRating/StarRating";
 
 export default function BookDetails({selectedId, handleBack}){
 
@@ -27,8 +28,8 @@ export default function BookDetails({selectedId, handleBack}){
             <button onClick={handleBack}>Back</button>
         </div>
 
-        {isLoading ? <Loader/> : 
-        <div className="book-details d-flex">
+        {isLoading ? <Loader/> : <div className="book-details">
+        <div className="d-flex" style={{gap: '10px'}}>
         <div>
             <img src={book.image} alt={book.name} />
         </div>
@@ -43,7 +44,13 @@ export default function BookDetails({selectedId, handleBack}){
                 <li> ISBN :{book.isbn}</li>
             </ul>
         </div>
-      </div>}
+      </div>
+       <div>
+        <div>Rate Book: </div>
+            <StarRating/>      
+         </div>
+       </div>
+      }
           
        </div> 
     )

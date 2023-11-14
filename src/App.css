@@ -113,3 +113,14 @@ ul .books-list{
   padding: 0;
   list-style: none;
 }
+
+.star-svg{
+  background-color:#ff0;
+}
+.star-svg path{
+  fill: #828282;
+}
+
+.align-item-center{
+  align-items: center;
+}
