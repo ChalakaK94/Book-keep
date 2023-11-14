@@ -1,13 +1,12 @@
-import Logo from "./Logo";
-import Search from "./Search";
+import Logo from './Logo';
+import Search from './Search';
 
-export default function Navbar({childern}){
-    return (
-    <nav className='navbar'>
-       <Logo/>
-       <Search/>
-       {childern}
-       
+export default function NavBar({ children }) {
+  return (
+    <nav className="navbar">
+      <Logo />
+
+      {children}
     </nav>
-    )
+  );
 }
