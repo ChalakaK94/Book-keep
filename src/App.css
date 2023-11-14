@@ -101,3 +101,15 @@ ul .books-list{
   position: absolute;
   right: 0;
 }
+.book-details{
+  padding: 10px;
+  gap: 10px;
+}
+.book-details h2{
+  margin: 0;
+}
+
+.book-details ui {
+  padding: 0;
+  list-style: none;
+}
