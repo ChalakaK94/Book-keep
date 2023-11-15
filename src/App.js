@@ -76,11 +76,11 @@ function App() {
     <Main>
       <ListBox >
         {isLoading && <Loader/> }
-        {!isLoading && !error &&  <BooksList booksData={booksData} handleSelectedId={handleSelectedId} />  }
+        {!isLoading && !error &&  <BooksList booksData={booksData} handleSelectedId={handleSelectedId}  />  }
         {error && <ErrorMessage message={error}/> }
       </ListBox>
       <ListBox>
-        {selectedId ? <BookDetails selectedId= {selectedId} handleBack={handleBack} onBookRead={handleBooksRead}/> : <>
+        {selectedId ? <BookDetails selectedId= {selectedId} handleBack={handleBack} onBookRead={handleBooksRead} booksRead={booksReadData}/> : <>
         <BookReadSummary  books={booksReadData}/>
             <BooksReadList booksRead={booksReadData} />
             </>}

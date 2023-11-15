@@ -25,3 +25,7 @@ export function prepareBookObject(item){
     }
     return book
 }
+
+export function avarage(arr){
+    return arr.reduce((acc,curr)=> acc+ curr,0)/arr.length;
+}

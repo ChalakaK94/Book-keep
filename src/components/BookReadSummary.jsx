@@ -1,4 +1,10 @@
+import { avarage } from "../service/FormatBookResponse"
+
 export default function BookReadSummary({books}){
+
+    const rating = avarage(books.map((book)=> +book.rating));
+
+    const userRating = avarage(books.map((book)=> +book.userRating));
     return(
 
         <div className="books-summmary">
@@ -10,11 +16,11 @@ export default function BookReadSummary({books}){
                 </div>
                 <div>
                     <span>⭐</span>
-                    <span>4.5</span>
+                    <span>{rating || 0}</span>
                 </div>
                 <div>
                     <span>🎆</span>
-                    <span>5</span>
+                    <span>{userRating || 0}</span>
                 </div>
             </div>
         </div>
