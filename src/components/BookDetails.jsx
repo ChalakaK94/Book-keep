@@ -56,7 +56,7 @@ export default function BookDetails({selectedId, handleBack,onBookRead,booksRead
         </div>
       </div>
       
-      {isRated ? 'Already Rated to This Book ' : <div>
+      {isRated ? `Already Rated to This Book  ${ratedBook.userRating} Stars` : <div>
       <div>
         <div>Rate Book: </div> 
             <StarRating maxRating={10} color="#fc4199"  onSetRating={setUserRating}/>      
