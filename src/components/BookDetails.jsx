@@ -7,6 +7,9 @@ export default function BookDetails({selectedId, handleBack}){
 
     const [book, setBook] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
+    const [rating, setRating]= useState(0);
+
     async function getBookDetails(){
         setIsLoading(true)
         const  response = await fetch(`https://www.googleapis.com/books/v1/volumes/${selectedId}`);
@@ -47,7 +50,9 @@ export default function BookDetails({selectedId, handleBack}){
       </div>
        <div>
         <div>Rate Book: </div>
-            <StarRating/>      
+            <StarRating onSetRating={()=>console.log('rating')}/> 
+            <StarRating maxRating={10} color="#fc4199" defaultRating={5} onSetRating={setRating}/>      
+        <div>The Book has {rating} Star Rating</div>
          </div>
        </div>
       }
