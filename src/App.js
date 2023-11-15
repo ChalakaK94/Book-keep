@@ -26,7 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('')
   const [query, setQuery] = useState('ferrari')
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState('') 
 
 
   function handleSelectedId(id){
@@ -53,6 +53,7 @@ function App() {
     try{
     setIsLoading(true);
     setError('')
+    handleBack()
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${KEY}`,
      {signal:controller.signal});
     const data = await response.json();
@@ -62,8 +63,8 @@ function App() {
     }
     catch (error){
       setIsLoading(false)
-      if(error.name !== 'AbortErro'){
-      setError(error.message);
+      if (error.name !== 'AbortError') {
+        setError(error.message);
       }
       
     }
@@ -78,6 +79,18 @@ function App() {
       controller.abort();
     }
   },[query])
+
+  useEffect(()=>{
+    function callBack(e){
+      if(e.code === 'Escape'){
+        handleBack();
+      }
+    }
+    document.addEventListener('keydown', callBack)
+    return (()=>{
+      document.removeEventListener('keydown', callBack)
+    })
+  },[])
 
  
   return (
