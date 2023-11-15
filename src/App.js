@@ -46,11 +46,15 @@ function App() {
     let bookData = booksReadData.filter(book=> book.id !== id);
     setBooksReadData(bookData)
   }
+
+  const controller = new AbortController();
+
   async function fetchPosts(){
     try{
     setIsLoading(true);
     setError('')
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${KEY}`);
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${KEY}`,
+     {signal:controller.signal});
     const data = await response.json();
     if(!data.items) throw new Error ('No Books Data Avilable!');
     setBooksData(FormatBookResponse(data))
@@ -58,8 +62,9 @@ function App() {
     }
     catch (error){
       setIsLoading(false)
+      if(error.name !== 'AbortErro'){
       setError(error.message);
-      console.log(error.message);
+      }
       
     }
   }
@@ -68,7 +73,10 @@ function App() {
     if( query.length < 4){
       return
     }
-    fetchPosts() 
+    fetchPosts() ;
+    return ()=>{
+      controller.abort();
+    }
   },[query])
 
  
