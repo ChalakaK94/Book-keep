@@ -22,7 +22,10 @@ const KEY ='AIzaSyDd8zjqw7paHROuV-wUP-ZNvUXmGornx0c';
 
 function App() {
   const [booksData,setBooksData] = useState([])
-  const [booksReadData,setBooksReadData] = useState([])
+  const [booksReadData,setBooksReadData] = useState(function(){
+    const book = localStorage.getItem('readList');
+    return JSON.parse(book);
+  })
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('')
   const [query, setQuery] = useState('ferrari')
@@ -34,7 +37,7 @@ function App() {
   }
 
   function handleBooksRead(book){
-    setBooksReadData(b=> [...b, book])
+    setBooksReadData(b=> [...b, book]);
   }
 
 
@@ -45,7 +48,12 @@ function App() {
   function deleteReadBook(id){
     let bookData = booksReadData.filter(book=> book.id !== id);
     setBooksReadData(bookData)
+  
   }
+
+  useEffect(()=>{
+    localStorage.setItem('readList', JSON.stringify(booksReadData))
+  },[booksReadData])
 
   const controller = new AbortController();
 
