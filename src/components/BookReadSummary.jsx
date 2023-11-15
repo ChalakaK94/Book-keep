@@ -1,4 +1,4 @@
-export default function BookReadSummary(){
+export default function BookReadSummary({books}){
     return(
 
         <div className="books-summmary">
@@ -6,7 +6,7 @@ export default function BookReadSummary(){
             <div className="d-flex justify-content-between">
                 <div>
                     <span>_</span>
-                    <span>2 Books</span>
+                    <span>{books.length} Books</span>
                 </div>
                 <div>
                     <span>⭐</span>

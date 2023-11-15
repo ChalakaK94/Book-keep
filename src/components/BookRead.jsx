@@ -7,11 +7,11 @@ export default function BookRead({book}){
                 <div className="d-flex" style={{gap:'10px'}}>
                     <div>
                         <span>⭐</span>
-                        <span>3.5</span>
+                        <span>{book.rating}</span>
                     </div>
                     <div>
                         <span>🎆</span>
-                        <span>4.5</span>
+                        <span>{book.userRating}</span>
                     </div>
                 </div>
                 
