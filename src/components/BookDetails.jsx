@@ -1,36 +1,53 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { prepareBookObject } from "../service/FormatBookResponse";
 import Loader from "./Loader";
 import StarRating from "./starRating/StarRating";
 
-export default function BookDetails({selectedId, handleBack,onBookRead,booksRead}){
+export default function BookDetails({selectedId, handleBack,onBookRead, booksReadData}){
 
-    const [book, setBook] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
+    const [book, setBook] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState(0);
 
-    const [userRating, setUserRating]= useState(0);
-    const isRated = booksRead.map(book=> book.id).includes(selectedId);
-    const ratedBook = booksRead.find(book=> book.id === selectedId)
+  const countRef = useRef(0);
 
-    async function getBookDetails(){
-        setIsLoading(true)
-        const  response = await fetch(`https://www.googleapis.com/books/v1/volumes/${selectedId}`);
-        const bookDetails = await response.json();
-       setBook(prepareBookObject(bookDetails));
+  useEffect(() => {
+    if (userRating) countRef.current = countRef.current + 1;
+  }, [userRating]);
 
-       setIsLoading(false);
-    }
+  const isRated = booksReadData.map((book) => book.id).includes(selectedId);
+  const ratedBook = booksReadData.find((book) => book.id === selectedId);
 
-    useEffect(()=>{
-        getBookDetails();
+  async function getBookDetails() {
+    setIsLoading(true);
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${selectedId}`);
+    const bookDetails = await response.json();
 
-    },[selectedId])
+    setBook(prepareBookObject(bookDetails));
+    setIsLoading(false);
+  }
 
-    function handleBookRead(){
-        onBookRead({...book,userRating})
-        handleBack();
-    }
+  function handleBookRead() {
+    onBookRead({ ...book, userRating, ratingCount: countRef.current });
+    handleBack();
+  }
 
+  //component is mounted && selectedId changes triggred
+  useEffect(
+    function () {
+      getBookDetails();
+    },
+    [selectedId]
+  );
+
+  useEffect(() => {
+    if (!book) return;
+    document.title = `Book - ${book.title}`;
+    return () => {
+      console.log(book.title);
+      document.title = 'Books DB';
+    };
+  }, [book]);
 
     return (
        <div>
