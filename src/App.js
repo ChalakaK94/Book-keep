@@ -14,6 +14,7 @@ import BookDetails from './components/BookDetails';
 import Results from './components/Results';
 import { useBooks } from './service/useBooks';
 import { useLocalStorage } from './service/useLocalStorage';
+import { useKeyDownEvent } from './service/useKeyDownEvent';
 
 const KEY = `AIzaSyDd8zjqw7paHROuV-wUP-ZNvUXmGornx0c`;
 function App() {
@@ -23,7 +24,9 @@ function App() {
   const { isLoading, error, booksData } = useBooks(query, handleBack);
 
   const [booksReadData, setBooksReadData] = useLocalStorage([], 'readList');
+  
 
+  useKeyDownEvent("Escape",handleBack)
  
 
   function handleSelectedId(id) {
@@ -42,18 +45,6 @@ function App() {
     setBooksReadData(booksData);
   }
 
- 
-  useEffect(() => {
-    function callback(e) {
-      if (e.code === 'Escape') {
-        handleBack();
-      }
-    }
-    document.addEventListener('keydown', callback);
-    return () => {
-      document.removeEventListener('keydown', callback);
-    };
-  }, [handleBack]);
 
   return (
     <>
